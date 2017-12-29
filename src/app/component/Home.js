@@ -15,8 +15,7 @@ import Movie from 'app/component/Movie'
 export default class Home extends React.Component {
 
   state = {
-    tabIndex: 1,
-    selectedIndex: 0
+    tabIndex: 2
   }
 
   render() {

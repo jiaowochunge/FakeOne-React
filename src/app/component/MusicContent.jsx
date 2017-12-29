@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import AppBar from 'material-ui/AppBar'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import RefreshIndicator from 'material-ui/RefreshIndicator'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
@@ -32,7 +33,7 @@ export default class EssayContent extends React.Component {
           status={this.state.loadingStatus}
         />
         <AppBar
-          title="STORY"
+          title="ONE·MUSIC"
           iconElementLeft={<IconButton><IconNavigationArrowBack /></IconButton>}
           onLeftIconButtonClick={this.props.history.goBack}
           iconElementRight={<IconButton><IconCommunicationCallMade /></IconButton>}
@@ -41,9 +42,16 @@ export default class EssayContent extends React.Component {
         {
           this.state.data == null ? null : (
             <div className={css(style.content)}>
-              <h2>{this.state.data.hp_title}</h2>
+              <Card containerStyle={{margin: '-8px'}}>
+                <CardMedia
+                  overlay={<CardTitle title={this.state.data.title} subtitle={this.state.data.info} />}
+                >
+                  <img src={this.state.data.cover} alt="" />
+                </CardMedia>
+              </Card>
+              <h2>{this.state.data.story_title}</h2>
               <p>{this.state.data.hp_author}</p>
-              <div dangerouslySetInnerHTML={{__html: this.state.data.hp_content}}>
+              <div dangerouslySetInnerHTML={{__html: this.state.data.story}}>
               </div>
               <p>{this.state.data.hp_author_introduce}</p>
               <p>{this.state.data.copyright}</p>
@@ -88,7 +96,7 @@ export default class EssayContent extends React.Component {
         })
       }
     }
-    this.xhttp.open('GET', `${config.HOST}essay/${this.props.match.params.id}`, true)
+    this.xhttp.open('GET', `${config.HOST}music/detail/${this.props.match.params.id}`, true)
     this.xhttp.send()
   }
 
@@ -117,7 +125,8 @@ const style = StyleSheet.create({
     left: 0,
     top: 0,
     height: '100vh',
-    width: '100vw'
+    width: '100vw',
+    textAlign: 'center'
   },
   content: {
     position: 'absolute',

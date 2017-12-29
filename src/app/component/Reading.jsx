@@ -23,12 +23,9 @@ export default class Reading extends React.Component {
                   title={data.title}
                   subtitle={`文／${data.author.user_name}`}
                 />
-                <CardMedia>
+                <CardMedia overlay={<CardTitle subtitle={data.forward} />}>
                   <img src={data.img_url} alt="" />
                 </CardMedia>
-                <CardText>
-                  {data.forward}
-                </CardText>
                 <CardActions>
                   <label>{data.post_date.substring(0, 10)}</label>
                   <FlatButton label={data.like_count} labelPosition="before" icon={<IconActionFavoriteBorder />} />
