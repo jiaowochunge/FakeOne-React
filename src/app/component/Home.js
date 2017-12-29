@@ -1,4 +1,5 @@
 import React  from 'react'
+import { StyleSheet, css } from 'aphrodite/no-important'
 import AppBar from 'material-ui/AppBar'
 import {Tabs, Tab} from 'material-ui/Tabs'
 import FontIcon from 'material-ui/FontIcon'
@@ -15,21 +16,22 @@ import Movie from 'app/component/Movie'
 export default class Home extends React.Component {
 
   state = {
-    tabIndex: 2
+    tabIndex: 0
   }
 
   render() {
     return (
-      <div>
+      <div className={css(style.page)}>
         <Tabs
           value={this.state.tabIndex}
           onChange={this.onTabChange}
+          contentContainerClassName={css(style.tab)}
         >
           <Tab icon={<IconContentSend />} value={0} >
             <Daily />
           </Tab>
           <Tab icon={<IconCommunicationImportContacts />} value={1} >
-            <Reading style={{position: 'fixed', width: '100vw', height: '100vh', overflow: 'scroll'}} />
+            <Reading />
           </Tab>
           <Tab icon={<IconAVMusicVideo />} value={2} >
             <Music />
@@ -48,3 +50,19 @@ export default class Home extends React.Component {
     })
   }
 }
+
+
+const style = StyleSheet.create({
+  page: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    height: '100vh',
+    width: '100vw'
+  },
+  tab: {
+    height: 'calc(100vh - 48px)',
+    width: '100%',
+    overflow: 'scroll'
+  }
+})
