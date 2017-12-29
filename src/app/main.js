@@ -10,6 +10,10 @@ var App = {
   // 'load', 'deviceready', 'offline', and 'online'.
   bindEvents() {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false)
+    // if run project with `npm start`, there's no 'deviceready' event, we trigger it manually
+    if (!window.cordova) {
+      this.onDeviceReady()
+    }
   },
 
   // deviceready Event Handler
@@ -23,13 +27,8 @@ var App = {
   // Update DOM on a Received Event
   receivedEvent() {
     console.log('The device is ready!!!')
-    require('./main')
+    require('./App')
   }
 }
 
-// run project with 'npm start', there will be no 'deviceready' event, so run `main.jsx` directly
-if (__DEV__) {
-  App.receivedEvent()
-} else {
-  App.initialize()
-}
+App.initialize()

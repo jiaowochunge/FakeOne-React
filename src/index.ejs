@@ -7,9 +7,10 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' https://* data: 'unsafe-inline'; img-src 'self' http://* data:; media-src 'self' data:; font-src 'self' https://* data:; connect-src *">
-    <!-- <link rel="icon" type="image/GIF" href="url-loader!./images/favicon.ico"/> -->
-    <title>一个</title>
-    <% if(!__DEV__) { %>
+    <link rel="icon" type="image/x-icon" href="<%= require('assets/favicon.ico') %>" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <% if(process.env.NODE_ENV === 'production') { %>
       <script src="cordova.js"></script>
     <% } %>
 </head>
